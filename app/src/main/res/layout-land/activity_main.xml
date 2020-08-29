@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    tools:openDrawer="right"
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#FFB700"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/lcd_root"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:background="@drawable/lcd_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lcd"
+                android:background="@drawable/lcd_bg"
+                android:lines="1"
+                android:fontFamily="@font/lcd"
+                android:textSize="120sp"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="cpm"
+                android:lines="1"
+                android:fontFamily="@font/lcd"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/lcd_root"
+            app:layout_constraintTop_toBottomOf="@id/lcd_root"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="α"
+                android:textColor="#202020"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="serif"
+                android:alpha="0.6"
+                android:background="@drawable/round_bg"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:text="β"
+                android:textColor="#202020"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="serif"
+                android:alpha="0.6"
+                android:background="@drawable/round_bg"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:text="γ"
+                android:textColor="#202020"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="serif"
+                android:alpha="0.6"
+                android:background="@drawable/round_bg"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/pull_button"
+            android:src="@drawable/baseline_navigate_before_white_36"
+            android:background="@drawable/left_rounded_rect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:translationX="5dp"
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            tools:ignore="ContentDescription" />
+
+
+        <FrameLayout
+            android:id="@+id/banner_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="horizontal"
+        android:background="@drawable/left_rounded_rect"
+        android:layout_gravity="end|center_vertical"
+        android:padding="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/mag_check"
+            android:text="Use magnetometer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/wrapper_dose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/wrapper_dose"
+            app:layout_constraintStart_toStartOf="@id/mag_check"
+            app:layout_constraintEnd_toStartOf="@id/wrapper_volume"
+            app:layout_constraintTop_toBottomOf="@id/mag_check"
+            app:layout_constraintBottom_toTopOf="@id/dose_icon"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="0dp">
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/dose_bar"
+                android:splitTrack="false"
+                app:seekBarRotation="CW270"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <ImageView
+            android:id="@+id/dose_icon"
+            android:src="@drawable/baseline_house_white_36"
+            app:tint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="@id/wrapper_dose"
+            app:layout_constraintEnd_toEndOf="@id/wrapper_dose"
+            app:layout_constraintTop_toBottomOf="@id/wrapper_dose"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="ContentDescription" />
+
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+            android:id="@+id/wrapper_volume"
+            app:layout_constraintStart_toEndOf="@id/wrapper_dose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mag_check"
+            app:layout_constraintBottom_toTopOf="@id/volume_icon"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="50dp"
+            android:layout_height="0dp">
+
+            <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+                android:id="@+id/volume_bar"
+                android:splitTrack="false"
+                app:seekBarRotation="CW270"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+        <ImageView
+            android:id="@+id/volume_icon"
+            android:src="@drawable/baseline_volume_down_white_36"
+            app:tint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="@id/wrapper_volume"
+            app:layout_constraintEnd_toEndOf="@id/wrapper_volume"
+            app:layout_constraintTop_toBottomOf="@id/wrapper_volume"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
